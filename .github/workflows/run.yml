@@ -27,7 +27,7 @@ jobs:
 
       - name: Random wait 0~270分钟，打散执行时间(落在9~16点)
         run: |
-         # python -c "import random,time;wait = random.randint(0,270*60);print(f'随机等待 {wait//60} 分钟后执行');time.sleep(wait)"
+         python -c "import random,time;wait = random.randint(0,270*60);print(f'随机等待 {wait//60} 分钟后执行');time.sleep(wait)"
 
       - name: Run script
         run: python step_run.py
