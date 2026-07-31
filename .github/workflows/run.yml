@@ -1,0 +1,33 @@
+name: Auto Step Task
+on:
+  schedule:
+    # UTC时间，北京时间 = UTC+8
+    # 北京时间09:10 基准启动
+    - cron: '10 1 * * *'
+    # 北京时间12:40 基准启动
+    - cron: '40 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-job:
+    runs-on: ubuntu-latest
+    env:
+      ACCOUNT_TEL: ${{ secrets.ACCOUNT_TEL }}
+      ACCOUNT_PSW: ${{ secrets.ACCOUNT_PSW }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Random wait 0~270分钟，打散执行时间(落在9~16点)
+        run: |
+          python -c "import random,time;wait = random.randint(0,270*60);print(f'随机等待 {wait//60} 分钟后执行');time.sleep(wait)"
+
+      - name: Run script
+        run: python step_run.py
