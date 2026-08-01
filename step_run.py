@@ -144,19 +144,16 @@ def aes_encrypt(data_obj, key_raw, iv_raw):
 
 def make_signature(form_data, ts, nc):
     import hashlib
-    # 新增调试输出
-    print("====签名原始串====") 
     key_str = get_secret_key()
     sign_raw = f"tel={form_data['tel']}&psw={form_data['psw']}&step={form_data['step']}&timestamp={ts}&nonce={nc}&key={key_str}"
-    signature = make_signature(form, timestamp, nonce)
-
-
+    
+    # 调试打印
+    print("====签名原始串====")
     print(sign_raw)
-    print("本地计算md5签名：", signature)
+    md5_result = hashlib.md5(sign_raw.encode("utf-8")).hexdigest()
+    print("本地计算md5签名：", md5_result)
     
-    
-    
-    return hashlib.md5(sign_raw.encode("utf-8")).hexdigest()
+    return md5_result
 
 if __name__ == "__main__":
     main()
