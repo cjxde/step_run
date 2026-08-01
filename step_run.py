@@ -57,7 +57,7 @@ def main():
     # ========== 只有走到这里，才是真正要执行任务 ==========
     wait = random.randint(0, MAX_WAIT_SEC)
     print(f"本次有效任务，随机等待 {wait//60}分{wait%60}秒")
-    time.sleep(wait)
+ #   time.sleep(wait)
 
     # ============业务脚本（刷步数逻辑）=============
     step = random.randint(10005, 17000)
