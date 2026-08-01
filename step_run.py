@@ -144,15 +144,15 @@ def aes_encrypt(data_obj, key_raw, iv_raw):
 
 def make_signature(form_data, ts, nc):
     import hashlib
+    # 新增调试输出
+    print("====签名原始串====") 
     key_str = get_secret_key()
     sign_raw = f"tel={form_data['tel']}&psw={form_data['psw']}&step={form_data['step']}&timestamp={ts}&nonce={nc}&key={key_str}"
     signature = make_signature(form, timestamp, nonce)
-# 新增调试输出
-print("====签名原始串====")
-key_str = get_secret_key()
-sign_raw = f"tel={form['tel']}&psw={form['psw']}&step={form['step']}&timestamp={timestamp}&nonce={nonce}&key={key_str}"
-print(sign_raw)
-print("本地计算md5签名：", signature)
+
+
+    print(sign_raw)
+    print("本地计算md5签名：", signature)
     
     
     
