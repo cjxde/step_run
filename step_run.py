@@ -123,7 +123,7 @@ def main():
 # 工具函数
 def get_secret_key():
     arr = ['fanTui2024', 'SecretKey', '1234567890', '1234567890', '1234567890', '1234567890']
-    return "".join(arr)
+    return "".join(arr) + "123456789012345678901234567890"
 
 def generate_nonce():
     def rand_str():
